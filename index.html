@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
     <style>
-        /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
-
         @import url(http://fonts.googleapis.com/css?family=Londrina+Solid|Nunito:400,300);
         * {
             box-sizing: border-box;
@@ -64,7 +62,7 @@
         .letter {
             display: inline-block;
             color: transparent;
-            border-bottom: 5px solid #53BDFF;
+            border-bottom: 5px solid #ff5151;
             margin: 0 10px;
             font-size: 50px;
             padding: 10px;
@@ -202,12 +200,18 @@
         .sp{
             border-bottom: 0px !important;
         }
+        .lenny{
+            font-weight: 100 !important;
+            font-size: 50px;
+            font-family: monospace;
+        }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 </head>
 
 <body>
     <div class="hangman">
+       <h1>Ahorcado</h1>
         <div class="guess"></div>
         <form class="guessForm">
             <input type="text" class="guessLetter" maxlength="1" placeholder="Ingrese una letra . . . &#x23ce;" />
@@ -217,6 +221,9 @@
             <br/>
             Nota: Quizá pueda ser una frase, por lo tanto se puede usar el espacio.
         </p>
+        <br/>
+        <br/>
+        <h1 class="lenny">( ͡° ͜ʖ ͡°)</h1>
         <div class="wrong">
             <div class="wrongLetters"></div>
         </div>
