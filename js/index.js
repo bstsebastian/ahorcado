@@ -79,7 +79,7 @@ Fonts from Google Fonts
     theGuess: function(e){
       e.preventDefault();
       var guess = this.guessLetterInput.val();
-      if(guess.match(/[a-zA-Z]/) && guess.length == 1){
+      if(guess.match(/[a-zA-Z ]/) && guess.length == 1){
         if($.inArray(guess, this.wrongGuesses) > -1 || $.inArray(guess, this.rightGuesses) > -1){
           this.playSound("badSound");
           this.guessLetterInput.val("").focus();
@@ -156,12 +156,22 @@ Fonts from Google Fonts
       var _ = this;
       _.correct = _.correct += letters.length;
       $.each(letters, function(key, val){
-        var letter = $("li[data-pos=" +val.pos+ "]");
-        letter.html(val.letter);
-        letter.addClass("correct");
+        if(val.letter != " "){
+            var letter = $("li[data-pos=" +val.pos+ "]");
+            letter.html(val.letter);
+            letter.addClass("correct");
 
-        if(_.correct  == _.wrd.letters.length){
-          _.win();
+            if(_.correct  == _.wrd.letters.length){
+              _.win();
+            }
+        } else{
+            var letter = $("li[data-pos=" +val.pos+ "]");
+            letter.html("&nbsp;");
+            letter.addClass("correct");
+            letter.addClass("sp");
+            if(_.correct  == _.wrd.letters.length){
+              _.win();
+            }
         }
       });
     },
@@ -232,9 +242,9 @@ Fonts from Google Fonts
 
     win: function(){
       var rating = this.rating();
-      this.msgTitle.html("Increible, has ganado!");
+      this.msgTitle.html("¡Increible, has ganado!");
       // this is messy
-      this.msgText.html("Has resuelto la palabra en <span class='highlight'>" + rating.guesses + "</span> intentos!<br>Puntuaje: <span class='highlight'>" + rating.rating + "%</span>");
+      this.msgText.html("¡Has resuelto la palabra en <span class='highlight'>" + rating.guesses + "</span> intentos!<br>Puntuaje: <span class='highlight'>" + rating.rating + "%</span>");
       this.showMsg();
       this.playSound("winSound");
 
@@ -243,14 +253,14 @@ Fonts from Google Fonts
 
     lose: function(){
       this.msgTitle.html("Has perdido.. la palabra era <span class='highlight'>"+ this.wrd.word +"</span>");
-      this.msgText.html("no te preocupes, lo haras mejor la proxima!");
+      this.msgText.html("¡No te preocupes, lo haras mejor la próxima!");
       this.showMsg();
       this.playSound("loseSound");
     }
   
   };
 
-  var wordList = ["altosPrecios","malServicio","malaUbicacion","faltaDeExperiencia","reservasInsuficientes","malosTratos","sinPublicidad","ignoranciaDeEstrategias"];
+  var wordList = ["Altos Precios","Mal Servicio","Mala Ubicacion","Falta De Experiencia","Reservas Insuficientes","Malos Tratos","Sin Publicidad","Ignorancia De Estrategias"];
 
   Hangman.init(wordList);
   
